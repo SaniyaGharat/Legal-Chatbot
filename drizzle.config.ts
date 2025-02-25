@@ -1,16 +1,13 @@
-import { config } from 'dotenv';
-import { defineConfig } from 'drizzle-kit';
+import { config } from "dotenv";
 
-config({
-  path: '.env.local',
-});
+config({ path: ".env.local" });
 
-export default defineConfig({
-  schema: './lib/db/schema.ts',
-  out: './lib/db/migrations',
-  dialect: 'postgresql',
+export default {
+  schema: "./lib/db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql", // ✅ Sirf dialect use karo, driver hatao
   dbCredentials: {
-    // biome-ignore lint: Forbidden non-null assertion.
-    url: process.env.POSTGRES_URL!,
-  },
-});
+    connectionString: "postgresql://legal_chatbot_db_user:BQovmP1rEEa55aWQfwhzOdpyKvOaB9qv@dpg-cuuefs2n91rc73fj4vtg-a.singapore-postgres.render.com/legal_chatbot_db",
+    ssl: true, // ✅ Ensure SSL is enabled
+  }
+};
